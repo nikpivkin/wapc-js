@@ -104,6 +104,10 @@ export class WapcHost {
   }
 
   async invoke(operation: string, payload: Uint8Array): Promise<Uint8Array> {
+    return this.invokeSync(operation, payload)
+  }
+
+  invokeSync(operation: string, payload: Uint8Array): Uint8Array {
     debug(() => [`invoke(%o, [%o bytes]`, operation, payload.length]);
     const operationEncoded = this.textEncoder.encode(operation);
     this.state.guestRequest = { operation, operationEncoded, msg: payload };
