@@ -133,6 +133,17 @@ export function generateWASIImports(instance: WapcHost): WebAssembly.ModuleImpor
       return bytesWritten;
     },
 
+    fd_close() { return 0 },
+    fd_fdstat_get() { return 0 },
+    fd_prestat_get() { return 0 },
+    fd_prestat_dir_name() { return 0 },
+    fd_read() { return 0 },
+    fd_seek() { return 0 },
+
+    path_open() { return 0 },
+
+    proc_exit() { return 0 },
+
     args_sizes_get(argc: number, argvBufSize: number): number {
       const memory = instance.getCallerMemory();
       const dv = new DataView(memory.buffer);
@@ -147,5 +158,12 @@ export function generateWASIImports(instance: WapcHost): WebAssembly.ModuleImpor
     args_get(argv: number, argvBuf: number): number {
       return 0;
     },
+
+    environ_sizes_get() { return 0 },
+    environ_get() { return 0 },
+
+    clock_time_get() { return 0; },
+
+    random_get() { return 0; }
   };
 }
